@@ -3,12 +3,14 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 import { switchMap } from 'rxjs/operators';
+import * as InlineEditor from '@ckeditor/ckeditor5-build-inline';
 
 import { Brick, Pallet } from '../../schema';
 import { BrickService } from './brick.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TimerService, Timer } from './timer.service';
 import { BrickTimePipe } from './brickTime.pipe';
+import { DatabaseService } from '../../database/database.service';
 
 @Component({
     selector: 'introduction',
@@ -16,7 +18,10 @@ import { BrickTimePipe } from './brickTime.pipe';
     styleUrls: ['./introduction.component.scss']
 })
 export class IntroductionComponent {
-    constructor(private bricks: BrickService, timer: TimerService, private brickTime: BrickTimePipe, private router: Router, private route: ActivatedRoute) {
+    private editor = InlineEditor;
+	private data = "<p>Some content</p>"
+
+    constructor(private bricks: BrickService, timer: TimerService, private brickTime: BrickTimePipe, private router: Router, private route: ActivatedRoute, private db: DatabaseService) {
         this.timer = timer.new();
         this.timer.timeResolution = 1000;
         this.aBrick = bricks.currentBrick;
@@ -32,7 +37,17 @@ export class IntroductionComponent {
     aPallet: Observable<Pallet>;
     timer: Timer;
 
+    _brick: Brick;
+
+    savePrep(data) {
+        console.log(data);
+        if(this._brick) {
+            this.db.savePrep(this._brick, data)
+        }
+    }
+
     showBrick(brick: Brick) {
+        this._brick = brick;
         let time = this.brickTime.transform(brick.type, "intro");
         this.timer.countDown(time);
         this.timer.timeRanOut.subscribe((t) => {

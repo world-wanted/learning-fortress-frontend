@@ -2,6 +2,7 @@ import { Component, Input } from "@angular/core";
 import { register } from "./comp_index";
 import { Comp, ComponentAttempt } from "../../../schema";
 import { CompComponent } from "./comp.component";
+import * as InlineEditor from '@ckeditor/ckeditor5-build-inline';
 
 export class CompText extends Comp {
     data: { text: string }
@@ -23,6 +24,7 @@ export class CompText extends Comp {
     styleUrls: ["../live.component.scss"]
 })
 export class TextComponent extends CompComponent {
+    public Editor = InlineEditor;
     constructor() { super() }
 
     @Input() data: CompText;

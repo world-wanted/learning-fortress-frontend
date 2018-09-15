@@ -11,9 +11,9 @@ const routes = [
             // Redirecting to default pallet
             // { path: 'dashboard', component: DashboardComponent },
             // { path: 'dashboard', redirectTo: 'pallet/bsjsJllNgYkos0w3Wrtv', pathMatch: 'full' },
-            // { path: 'pallet/:id', component: PalletComponent }
-        ]},
-        { path: 'brick', loadChildren: "./brick/brickbuild.module#BrickModule" }
+            // { path: 'pallet/:id', component: PalletComponent },
+            { path: 'brick', loadChildren: "./brick/brickbuild.module#BrickBuildModule" }
+        ]}
     ]} 
 ]
 

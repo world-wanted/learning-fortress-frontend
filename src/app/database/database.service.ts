@@ -163,4 +163,10 @@ export class DatabaseService {
             );
         return bricks$;
     }
+
+    savePrep(brick: Brick, data: string) : Observable<void> {
+        return Observable.fromPromise(
+            brick._ref.set({ prep: brick.prep }, {merge: true})
+        );
+    }
 }

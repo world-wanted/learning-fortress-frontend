@@ -18,7 +18,8 @@
                     Prep
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <div [innerHTML]="brick.prep"></div>
+            <!-- <div [innerHTML]="brick.prep"></div> -->
+            <ckeditor [editor]="editor" [(ngModel)]="brick.prep" (blur)="savePrep(brick.prep)"></ckeditor>
         </mat-expansion-panel>
     </mat-accordion>
     <div class="begin-row"

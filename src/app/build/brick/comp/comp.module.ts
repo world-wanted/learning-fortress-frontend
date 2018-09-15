@@ -18,7 +18,7 @@ import { TextHighlightingComponent } from './comp_text_highlighting.component';
 import { HighlightDirective } from './highlight.directive';
 import { ArrowComponent } from './comp_arrow.component';
 import { RevealComponent } from './comp_reveal.component';
-import {AngularFittextModule} from 'angular-fittext';
+import { AngularFittextModule } from 'angular-fittext';
 import { PoemComponent } from './comp_poem.component';
 
 let dModule = DynamicModule.withComponents([SingleChoiceComponent, MultipleChoiceComponent, 
