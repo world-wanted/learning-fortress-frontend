@@ -19,11 +19,12 @@ import { ReviewComponent } from './review.component';
 import { EndingComponent } from './ending.component';
 import { TimerComponent } from './timer.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { EditorComponent } from './editor.component';
 
 @NgModule({
     imports: [ CKEditorModule, BrickRoutingModule, CommonModule, MaterialModule, MatIconModule, DragulaModule, CompModule, NgArrayPipesModule, FlexLayoutModule ],
     declarations: [
-        BrickComponent, TimerComponent, IntroductionComponent, LiveComponent, QuestionComponent, SummaryComponent, ReviewComponent, EndingComponent, BrickTimePipe
+        BrickComponent, TimerComponent, IntroductionComponent, LiveComponent, QuestionComponent, SummaryComponent, ReviewComponent, EndingComponent, EditorComponent, BrickTimePipe
     ],
     providers: [
         BrickTimePipe

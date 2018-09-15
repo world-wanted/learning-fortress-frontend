@@ -10,7 +10,7 @@
                     Brief
                 </mat-panel-title>
             </mat-expansion-panel-header>
-            <div [innerHTML]="brick.brief"></div>
+            <editor [brick]="brick" [prop]="'brief'"></editor>
         </mat-expansion-panel>
         <mat-expansion-panel expanded="true">
             <mat-expansion-panel-header>
@@ -19,7 +19,7 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <!-- <div [innerHTML]="brick.prep"></div> -->
-            <ckeditor [editor]="editor" [(ngModel)]="brick.prep" (blur)="savePrep(brick.prep)"></ckeditor>
+            <editor [brick]="brick" [prop]="'prep'"></editor>
         </mat-expansion-panel>
     </mat-accordion>
     <div class="begin-row"

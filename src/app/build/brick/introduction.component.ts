@@ -18,10 +18,7 @@ import { DatabaseService } from '../../database/database.service';
     styleUrls: ['./introduction.component.scss']
 })
 export class IntroductionComponent {
-    private editor = InlineEditor;
-	private data = "<p>Some content</p>"
-
-    constructor(private bricks: BrickService, timer: TimerService, private brickTime: BrickTimePipe, private router: Router, private route: ActivatedRoute, private db: DatabaseService) {
+    constructor(private bricks: BrickService, timer: TimerService, private brickTime: BrickTimePipe, private router: Router, private route: ActivatedRoute) {
         this.timer = timer.new();
         this.timer.timeResolution = 1000;
         this.aBrick = bricks.currentBrick;
@@ -38,13 +35,6 @@ export class IntroductionComponent {
     timer: Timer;
 
     _brick: Brick;
-
-    savePrep(data) {
-        console.log(data);
-        if(this._brick) {
-            this.db.savePrep(this._brick, data)
-        }
-    }
 
     showBrick(brick: Brick) {
         this._brick = brick;

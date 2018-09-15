@@ -11,7 +11,9 @@
             <mat-card-title>
                 Summary
             </mat-card-title>
-            <mat-card-content>{{ brick.summary }}</mat-card-content>
+            <mat-card-content>
+                <editor [brick]="brick" [prop]="'summary'"></editor>
+            </mat-card-content>
         </mat-card>
         <div class="score-container" fxLayout="column" fxLayoutAlign="center center">
             <mat-progress-spinner diameter="300" mode="determinate" [value]="brickAttempt?.score * 100 / brickAttempt?.maxScore"></mat-progress-spinner>
@@ -21,7 +23,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="begin-row"
         fxLayout="row" fxLayoutAlign="start center">
         <p>When you have read the summary, click the button.</p>

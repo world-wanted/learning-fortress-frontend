@@ -70,7 +70,7 @@ export class DatabaseService {
                 })
         );
     }
-    
+
     getStudentPallets(uid: string) : Observable<StudentPallet[]> {
         let palletsRef: AngularFirestoreCollection<StudentPallet> = this.afs.collection('students').doc(uid).collection<StudentPallet>('pallets');
         const pallets$ = palletsRef.snapshotChanges()
@@ -151,7 +151,7 @@ export class DatabaseService {
         // Get snapshotChanges as opposed to valueChanges
         const bricks$ = brickCollection.snapshotChanges()
             .pipe(
-                // Map the document references 
+                // Map the document references
                 map((actions: DocumentChangeAction<Brick>[]) => actions.map((action) => {
                     // https://github.com/angular/angularfire2/blob/master/docs/firestore/collections.md
                     // payload.doc is a DocumentSnapshot
@@ -164,9 +164,9 @@ export class DatabaseService {
         return bricks$;
     }
 
-    savePrep(brick: Brick, data: string) : Observable<void> {
+    saveBrick(brick: Brick, data: string) : Observable<void> {
         return Observable.fromPromise(
-            brick._ref.set({ prep: brick.prep }, {merge: true})
+            brick._ref.set(brick, {merge: true})
         );
     }
 }
