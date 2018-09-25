@@ -1,4 +1,4 @@
-import { Component, ViewChildren, QueryList } from '@angular/core';
+import { Component, ViewChildren, QueryList, ViewChild, AfterViewInit } from '@angular/core';
 
 import { BrickService } from './brick.service';
 
@@ -11,7 +11,9 @@ import { CompComponent } from './comp/comp.component';
 import { QuestionComponent } from './question.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
-import * as $ from 'jquery';
+import { MatStepper } from '@angular/material';
+
+declare var $: any;
 
 @Component({
     selector: 'live',
@@ -19,7 +21,8 @@ import * as $ from 'jquery';
     styleUrls: ['./live.component.scss'],
     providers: [ ]
 })
-export class LiveComponent {
+export class LiveComponent{
+    
     constructor(public bricks: BrickService, timer: TimerService, brickTime: BrickTimePipe, public router: Router, public route: ActivatedRoute, public auth: AuthService) {
         this.brick = bricks.currentBrick.asObservable();
         this.timer = timer.new();
@@ -40,6 +43,7 @@ export class LiveComponent {
     private brickTime: BrickTimePipe;
 
     @ViewChildren(QuestionComponent) questions : QueryList<QuestionComponent>;
+    @ViewChild('stepper') stepper: MatStepper;
 
     showBrick(brick: Brick) {
         let time = this.brickTime.transform(brick.type, "live");
@@ -47,6 +51,18 @@ export class LiveComponent {
         this.timer.timeRanOut.subscribe((t) => {
             this.finishBrick();
         })
+    }
+
+    moveToNextQuestion() {
+        if (this.stepper.selectedIndex == this.questions.length - 1) {
+            this.finishBrick();
+        }
+        else {
+            this.stepper.selectedIndex = this.stepper.selectedIndex + 1;
+            $('html,body').animate({
+                scrollTop: $('.mat-step:nth-child(' + this.stepper.selectedIndex + ')').offset().top},
+            'slow');            
+        }
     }
 
     finishBrick() {

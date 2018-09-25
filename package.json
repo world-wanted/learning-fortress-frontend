@@ -46,7 +46,7 @@
     "path": "^0.12.7",
     "rxjs": "^6.2.2",
     "rxjs-compat": "^6.2.2",
-    "typescript": "~2.7.2",
+    "typescript": "~2.9.2",
     "url-parse": "^1.4.3",
     "zone.js": "^0.8.26"
   },

@@ -1,5 +1,5 @@
 <timer [timer]="timer"></timer>
-<mat-vertical-stepper>
+<mat-vertical-stepper #stepper>
     <ng-template matStepperIcon="number">
         <mat-icon>help_outline</mat-icon>
     </ng-template>
@@ -14,5 +14,5 @@
 <div class="begin-row" style="padding-bottom: 85px;"
     fxLayout="row" fxLayoutAlign="start center">
     <div fxFlex="1 0 0"></div>
-    <p class="begin-label">Submit Initial Brick Attempt</p><a mat-fab class="fab-bottom" (click)="finishBrick()"><mat-icon>play_arrow</mat-icon></a>
+    <p class="begin-label">Submit Initial Brick Attempt</p><a mat-fab class="fab-bottom" (click)="moveToNextQuestion()"><mat-icon>play_arrow</mat-icon></a>
 </div>
