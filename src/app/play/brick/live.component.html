@@ -1,17 +1,11 @@
 <timer [timer]="timer"></timer>
-<mat-horizontal-stepper>
-    <ng-template matStepperIcon="number">
-        <mat-icon>help_outline</mat-icon>
-    </ng-template>
-    <ng-template matStepperIcon="edit">
-        <mat-icon>done</mat-icon>
-    </ng-template>
+<mat-horizontal-stepper #stepper>
     <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
         <question [question]="question" ></question>
     </mat-step>
 </mat-horizontal-stepper>
-<div class="begin-row" style="padding-bottom: 85px;"
+<div class="begin-row footer" style="padding-bottom: 85px;"
     fxLayout="row" fxLayoutAlign="start center">
     <div fxFlex="1 0 0"></div>
-    <p class="begin-label">Submit Initial Brick Attempt</p><a mat-fab class="fab-bottom" (click)="finishBrick()"><mat-icon>play_arrow</mat-icon></a>
+    <p class="begin-label">Submit Initial Brick Attempt</p><a mat-fab class="fab-bottom" (click)="moveToNextQuestion()"><mat-icon>play_arrow</mat-icon></a>
 </div>

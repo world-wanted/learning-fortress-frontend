@@ -161,6 +161,12 @@ app-root {
     padding: 0 24px 24px 10px !important;
 }
 
+/* set scroll for horizontal stepper header */
+.mat-horizontal-stepper-header-container {
+    width: 100%;
+    overflow-x: scroll;
+}
+
 /* set the arrow icon container to expand to size of icon */
 mat-icon.arrow-icon {
     height: auto !important;
@@ -180,4 +186,9 @@ mat-card {
 /* remove default padding on material cards */
 .mat-button-toggle-label-content {
     line-height: normal !important;
+}
+
+/* set footer background white */
+.footer {
+   background-color: #fff; 
 }

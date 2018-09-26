@@ -1,16 +1,18 @@
-import { Component, ViewChildren, QueryList } from '@angular/core';
+import { Component, ViewChildren, QueryList, ViewChild, AfterViewInit } from '@angular/core';
 
 import { BrickService } from './brick.service';
 
 import { Brick, Question, BrickAttempt, Student, Pallet } from '../../schema';
 import { Observable } from 'rxjs';
-import { TimerService, Timer } from './timer.service';
+import { TimerService, Timer} from './timer.service';
 import { BrickTimePipe } from './brickTime.pipe';
 
 import { CompComponent } from './comp/comp.component';
 import { QuestionComponent } from './question.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
+import { MatStepper } from '@angular/material';
+
 import * as $ from 'jquery';
 
 @Component({
@@ -40,6 +42,7 @@ export class LiveComponent {
     private brickTime: BrickTimePipe;
 
     @ViewChildren(QuestionComponent) questions : QueryList<QuestionComponent>;
+    @ViewChild('stepper') stepper: MatStepper;
 
     showBrick(brick: Brick) {
         let time = this.brickTime.transform(brick.type, "live");
@@ -47,6 +50,15 @@ export class LiveComponent {
         this.timer.timeRanOut.subscribe((t) => {
             this.finishBrick();
         })
+    }
+
+    moveToNextQuestion() {
+        if (this.stepper.selectedIndex == this.questions.length - 1) {
+            this.finishBrick();
+        }
+        else {
+            this.stepper.selectedIndex = this.stepper.selectedIndex + 1;
+        }
     }
 
     finishBrick() {
