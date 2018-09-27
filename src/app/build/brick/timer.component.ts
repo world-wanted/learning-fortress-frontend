@@ -14,7 +14,7 @@ import { Timer } from "./timer.service";
         `
         .timer-container {
             position: fixed;
-            bottom: 5px;
+            bottom: 60px;
             right: 5px;
             display: flex;
             z-index: 100;

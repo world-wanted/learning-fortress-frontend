@@ -151,6 +151,7 @@ app-root {
     margin-left: 12px !important;
 }
 
+
 /* remove margin between left of screen and icons on questions */
 .mat-vertical-stepper-header {
     padding: 24px 24px 24px 2px !important;
@@ -164,7 +165,58 @@ app-root {
 /* set scroll for horizontal stepper header */
 .mat-horizontal-stepper-header-container {
     width: 100%;
-    overflow-x: scroll;
+    overflow-x: initial;
+    pointer-event: none;
+
+    mat-step-header.mat-horizontal-stepper-header  {
+        padding: 0;
+        .mat-step-label {
+            min-width: initial;
+        }
+        .mat-step-icon, .mat-step-icon-not-touched {
+            margin-right: initial;
+        }
+    }    
+    .mat-stepper-horizontal-line {
+        margin: 0;
+    }        
+}
+
+.mat-horizontal-content-container {
+    height: calc(100vh - 130px);
+    overflow-y: scroll !important;
+    box-sizing: border-box;    
+}
+
+@media (max-width: 768px) {
+    .mat-horizontal-stepper-header-container {
+        width: 80%;
+        margin:0 10%;
+        overflow-x: scroll;
+
+        .mat-horizontal-stepper-header  {
+            padding: 0;
+            min-width: 24px;
+
+            &:nth-child(1) {
+                margin-left: 50%;
+            }
+
+            &:last-child {
+                margin-right: 48%;
+            }            
+        }
+        &:after {
+            width: 0%;
+            content: ".";
+            opacity: 0;
+        }        
+        .mat-stepper-horizontal-line {
+            width: calc(100% - 24px);
+            min-width: calc(100% - 24px);
+        }    
+
+    }
 }
 
 /* set the arrow icon container to expand to size of icon */

@@ -1,10 +1,18 @@
 <timer [timer]="timer"></timer>
+<div class="stepper-header-helper">
+    <mat-icon _ngcontent-c5="" class="mat-icon material-icons backward-arrow" role="img" aria-hidden="true" (click)="goToPrevQuestion()">arrow_back_ios</mat-icon>
+    <div class="back-arrow-line"></div>
+    <mat-icon _ngcontent-c5="" class="mat-icon material-icons forward-arrow" role="img" aria-hidden="true" (click)="goToNextQuestion()">arrow_forward_ios</mat-icon>    
+    <div class="forward-arrow-line"></div>
+</div>
+
 <mat-horizontal-stepper #stepper>
+
     <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
         <question [question]="question" ></question>
     </mat-step>
-</mat-horizontal-stepper>
-<div class="begin-row footer" style="padding-bottom: 85px;"
+</mat-horizontal-stepper>	
+<div class="begin-row footer" style=""
     fxLayout="row" fxLayoutAlign="start center">
     <div fxFlex="1 0 0"></div>
     <p class="begin-label">Submit Initial Brick Attempt</p><a mat-fab class="fab-bottom" (click)="moveToNextQuestion()"><mat-icon>play_arrow</mat-icon></a>

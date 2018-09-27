@@ -52,12 +52,34 @@ export class LiveComponent {
         })
     }
 
+    goToPrevQuestion() {
+        if (this.stepper.selectedIndex > 0) {
+            this.stepper.selectedIndex = this.stepper.selectedIndex - 1;
+            this.animateStepperHeaderScroller();
+        }
+    }
+
+    goToNextQuestion() {
+        if (this.stepper.selectedIndex < this.questions.length - 1) {
+            console.log($('.mat-horizontal-stepper-header-container .mat-horizontal-stepper-header:nth-child(9)').offset().left - $('.mat-horizontal-stepper-header-container').offset().left);
+            this.stepper.selectedIndex = this.stepper.selectedIndex + 1;
+            this.animateStepperHeaderScroller();
+        }
+    }
+
+    animateStepperHeaderScroller() {
+        $('.mat-horizontal-stepper-header-container').animate({
+            scrollLeft: $(window).width() / 100 * 80 * (this.stepper.selectedIndex)
+        }, 'slow');        
+    }
+
     moveToNextQuestion() {
         if (this.stepper.selectedIndex == this.questions.length - 1) {
             this.finishBrick();
         }
         else {
             this.stepper.selectedIndex = this.stepper.selectedIndex + 1;
+               this.animateStepperHeaderScroller();
         }
     }
 
