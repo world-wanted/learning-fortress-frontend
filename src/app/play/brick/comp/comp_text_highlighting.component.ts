@@ -18,10 +18,12 @@ export class CompTextHighlighting extends Comp {
 @Component({
     selector: 'text-highlighting',
     template: `
-    <p *ngIf="attempt" fittext>{{ data.data.reveal }}</p>
-    <p class="text-highlighting" fittext>
-        <span *ngFor="let word of words; let i = index" [highlight]="word.highlight" [state]="getState(i)" (click)="toggleHighlight(i)"> {{ word.word }} </span>
-    </p>
+    <div class="text-highlighting-wrapper">
+        <p *ngIf="attempt" fittext>{{ data.data.reveal }}</p>
+        <p class="text-highlighting" fittext>
+            <span *ngFor="let word of words; let i = index" [highlight]="word.highlight" [state]="getState(i)" (click)="toggleHighlight(i)"> {{ word.word }} </span>
+        </p>
+    </div>
     `,
     styleUrls: ['../live.component.scss']
 })
