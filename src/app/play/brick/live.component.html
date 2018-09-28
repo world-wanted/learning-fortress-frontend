@@ -8,7 +8,7 @@
 
 <mat-horizontal-stepper #stepper>
 
-    <mat-step [editable]="true" *ngFor="let question of (brick | async)?.questions; let index = index">
+    <mat-step [editable]="true" *ngFor="let question of questionsData; let index = index">
         <question [question]="question" ></question>
     </mat-step>
 </mat-horizontal-stepper>	

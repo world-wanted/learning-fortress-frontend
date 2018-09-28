@@ -30,6 +30,7 @@ export class LiveComponent {
         bricks.currentBrick.subscribe((data) => {
             if(data != null) {
                 this._brick = data;
+                this.questionsData = data.questions;
                 this.showBrick(this._brick);
             }
         });
@@ -37,6 +38,7 @@ export class LiveComponent {
 
     brick: Observable<Brick>;
     timer : Timer;
+    questionsData: any[] = [];
 
     private _brick: Brick;
     private brickTime: BrickTimePipe;
